@@ -3,34 +3,35 @@
 #include<string.h>
 #include<stdlib.h>
 #define size 30
-void Cipher(char *str,int k)
+void make_and_print_cipher(char *string,int key)
 {
     char ciph[size][size];
-    int rows = 0;
-    int i, j;
-    for (i = 0; i < strlen(str);)
+    int rowsCounter = 0;
+    int stringElements, cols;
+    for (stringElements = 0; stringElements < strlen(string);)
     {
-            for (j = 0; j < k;)
+            for (cols = 0; cols < key;)
             {
-                if (i <= strlen(str))
+                if (stringElements <= strlen(string))
                 {   
-                        ciph[rows][j] = str[i];
-                        i++;
-                        j++;
+                        ciph[rowsCounter][cols] = string[stringElements];
+                        stringElements++;
+                        cols++;
                 }
                 else
                 {
                     break;
                 }
             }
-            rows++;
+            rowsCounter++;
     }
     printf("Cipher: ");
-    for (i = 0; i < k; i++)
+    int rows;
+    for (cols = 0; cols < key; cols++)
     {
-        for (j = 0; j < rows; j++)
+        for (rows = 0; rows < rowsCounter; rows++)
         {
-                printf("%c", ciph[j][i]);
+                printf("%c", ciph[rows][cols]);
         }
     }
 
@@ -38,11 +39,11 @@ void Cipher(char *str,int k)
 main()
 {
     char str[size];
-    int k;
+    int key;
     printf("Enter a string: ");
-    gets_s(str, size);
+    gets(str, size);
     printf("Enter k: ");
-    scanf_s("%d", &k);
-    Cipher(str, k);
+    scanf_s("%d", &key);
+    make_and_print_cipher(str, key);
    
 }
